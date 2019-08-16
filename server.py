@@ -1,10 +1,13 @@
 import os
 import datetime
 
+from dotenv import load_dotenv
 import httpx
 import pprint
 
-API_KEY = os.env['TRAFIKLAB_API_KEY']
+load_dotenv()
+
+API_KEY = os.environ['TRAFIKLAB_API_KEY']
 URL = "https://api.resrobot.se/v2/trip.json?key={}&originId={}&destId={}&passlist=0&date={}&time={}&products=128"
 
 # 740046158 = Rosenlundsgatan

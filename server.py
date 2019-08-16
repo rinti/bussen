@@ -7,7 +7,10 @@ import pprint
 load_dotenv()
 
 API_KEY = os.environ["TRAFIKLAB_API_KEY"]
-URL = "http://api.sl.se/api2/realtimedeparturesv4.json?key={}&siteid={}&timewindow=60&metro=false&train=false&tram=false&ship=false"
+URL = (
+    "http://api.sl.se/api2/realtimedeparturesv4.json"
+    "?key={}&siteid={}&timewindow=60&metro=false&train=false&tram=false&ship=false"
+)
 
 
 PAIRS = (("740046158", "740021705"), ("740053057", "740021705"))

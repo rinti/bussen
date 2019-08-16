@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <title>En busschaufför en busschaufför</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+    </script>
+  </head>
+  <body>
+    <div id="app">
+    {% raw %}
+        <div v-for="trip in trips">
+            {{ trip.name }}
+            <ul v-for="time in trip.trips">
+                <li>{{ time.ExpectedDateTime }}</li>
+            </ul>
+        </div>
+    {% endraw %}
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: () => {
+                return {
+                    trips: null
+                }
+            },
+            mounted () {
+                fetch('/api/trips').then(async (data) => {
+                    let res = await data.json()
+                    this.trips = res
+                })
+            }
+        })
+    </script>
+  </body>

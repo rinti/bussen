@@ -2,3 +2,4 @@ git+https://github.com/encode/httpx.git@master
 python-dotenv==0.10.3
 uvicorn
 starlette
+jinja2

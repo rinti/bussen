@@ -13,7 +13,7 @@
         <div v-for="trip in trips">
             {{ trip.name }}
             <ul v-for="time in trip.trips">
-                <li>{{ time.ExpectedDateTime }}</li>
+                <li>{{ time.ExpectedDateTime.split('T')[1] }}</li>
             </ul>
         </div>
     {% endraw %}

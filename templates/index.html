@@ -13,6 +13,7 @@
         <div v-for="trip in trips">
             {{ trip.name }}
             <ul v-for="time in trip.trips">
+                <li :style="{'display': 'block', 'background': '#000', 'height': '10px', width: percent(time.ExpectedDateTime) + 'px' }" />
                 <li>{{ time.ExpectedDateTime.split('T')[1] }}</li>
             </ul>
         </div>
@@ -32,6 +33,13 @@
                     let res = await data.json()
                     this.trips = res
                 })
+            },
+            methods: {
+                percent: function(date) {
+                    let diff = Math.abs(new Date() - new Date(date))
+                    let minutesLeft = Math.round(((diff/1000)/60) * 100) / 100;
+                    return minutesLeft * 10
+                }
             }
         })
     </script>

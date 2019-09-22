@@ -29,6 +29,4 @@ def get_trips():
         )
         data.append({"name": in_data[x]["name"], "trips": trips})
 
-    print(data)
-
     return data

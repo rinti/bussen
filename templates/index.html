@@ -2,19 +2,52 @@
 <html>
   <head>
     <title>En busschaufför en busschaufför</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Playfair+Display&display=swap" rel="stylesheet">
 
-    <script>
-    </script>
+
+
+    <style>
+        html {
+            font-size: 62.5%;
+        }
+        #app {
+            display: flex;
+            max-width: 375px;
+        }
+        #app div:first-of-type {
+        }
+
+        #app ul {
+            padding: 0;
+            list-style-type: none;
+        }
+
+        #app ul li {
+            font-family: 'Open Sans', sans-serif;
+            letter-spacing: 1px;
+            font-size: 1.2rem;
+        }
+
+        .Header {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+        }
+        
+        .Stop {
+            width: 50%;
+        }
+    </style>
   </head>
   <body>
     <div id="app">
     {% raw %}
-        <div v-for="trip in trips">
-            {{ trip.name }}
+        <div class="Stop" v-for="trip in trips">
+            <span class="Header">{{ trip.name }}</span>
             <ul v-for="time in trip.trips">
-                <li :style="{'display': 'block', 'background': '#000', 'height': '10px', width: percent(time.ExpectedDateTime) + 'px' }" />
-                <li>{{ time.ExpectedDateTime.split('T')[1] }}</li>
+                <!-- <li :style="{'display': 'block', 'background': '#000', 'height': '10px', width: percent(time.ExpectedDateTime) + 'px' }" /> -->
+                <li>{{ minutesLeft(time.ExpectedDateTime) }} ({{ time.ExpectedDateTime.split('T')[1] }})</li>
             </ul>
         </div>
     {% endraw %}
@@ -35,9 +68,13 @@
                 })
             },
             methods: {
-                percent: function(date) {
+                minutesLeft: function(date) {
                     let diff = Math.abs(new Date() - new Date(date))
-                    let minutesLeft = Math.round(((diff/1000)/60) * 100) / 100;
+                    // return Math.round(((diff/1000)/60) * 100) / 100;
+                    return Math.round(((diff/1000)/60));
+                },
+                percent: function(date) {
+                    const minutesLeft = this.minutesLeft(date)
                     return minutesLeft * 10
                 }
             }

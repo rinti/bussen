@@ -1,4 +1,4 @@
-git+https://github.com/encode/httpx.git@master
+httpx==0.7.3
 python-dotenv==0.10.3
 uvicorn
 starlette
